@@ -35,7 +35,7 @@ const aspectImgs = []
 classes.forEach((className, i) => {
   // Load Images
   const img = new Image(500, 500)
-  img.src = `./classes/${className}.png`
+  img.src = `./classes/${className}.svg`
   classImgs.push(img)
 
   document.getElementById("hidden").appendChild(img)
@@ -49,7 +49,7 @@ classes.forEach((className, i) => {
 // Aspects
 aspects.forEach((aspectName, i) => {
   const img = new Image()
-  img.src = `./aspects/${aspectName}.png`
+  img.src = `./aspects/${aspectName}.svg`
   aspectImgs.push(img)
 
   document.getElementById("hidden").appendChild(img)
