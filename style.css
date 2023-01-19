@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'cardc';
+  src: url('./assets/CARDC___.TTF');
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2 {
+  font-family: 'cardc';
+  text-align: center;
+}
+
+#canvas {
+  outline: solid black; 
+  display: block; 
+  margin: auto;
+}
+
+#main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.opt {
+  margin: 0.5em 0;
+}
+
+select, input, button {
+  float: right;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+select, option {
+  text-transform: capitalize;
+}
+
+.credit {
+  text-align: center;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Classpcet Card Generator</title>
+
+  <link rel="shortcut icon" href="./assets/bloodicon.png" type="image/x-icon">
+
+  <meta content="Classpcet Card Generator" property="og:title" />
+  <meta content="Generate your own classpect cards!" property="og:description" />
+  <meta content="https://flaringk.github.io/classpectcards" property="og:url" />
+  <meta content="#4379e6" data-react-helmet="true" name="theme-color" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="main">
+    <div id="options">
+      <h1>Classpect Card generator</h1>
+      <h2>options</h2>
+      
+      <div id=canvasOptions">
+        <div class="opt">
+          <label for="cardSizeX">Card Pixel Width</label> <input type="number" name="cardSizeX" id="cardSizeX" value="559">
+        </div>
+        <div class="opt">
+          <label for="cardSizeY">Card Pixel Height</label> <input type="number" name="cardSizeY" id="cardSizeY" value="871">
+        </div>
+        <div class="opt">
+          <label for="cardDPI">Card DPI</label> <input type="number" name="cardDPI" id="cardDPI" value="300">
+        </div>
+      </div>
+      <hr>
+      <div id=iconOptions">
+        <div class="opt">
+          <label for="classSize">Class Icon Size</label> <input type="number" name="classSize" id="classSize" value="1800">
+        </div>
+        <div class="opt">
+          <label for="aspectSize">Aspect Icon Size</label> <input type="number" name="aspectSize" id="aspectSize" value="600">
+        </div>
+      </div>
+      <hr>
+      <div id=numberOptions">
+        <div class="opt">
+          <label for="numberScale">Corner Number Scale</label> <input type="number" name="numberScale" id="numberScale" value="3">
+        </div>
+        <div class="opt">
+          <label for="numberX">Corner Number X position</label> <input type="number" name="numberX" id="numberX" value="200">
+        </div>
+        <div class="opt">
+          <label for="numberY">Corner Number Y position</label> <input type="number" name="numberY" id="numberY" value="200">
+        </div>
+      </div>
+      <hr>
+      <div class="viewOptions">
+        <div class="opt">
+          <label for="doDrawName">Draw Card Name</label> <input type="checkbox" name="doDrawName" id="doDrawName" checked>
+        </div>
+        <div class="opt">
+          <label for="doNameAspect">Draw Aspect in Name</label> <input type="checkbox" name="doNameAspect" id="doNameAspect" checked>
+        </div>
+        <div class="opt">
+          <label for="nameY">Card Name Height</label> <input type="number" name="nameY" id="nameY" value="-600">
+        </div>
+        <div class="opt">
+          <label for="nameSize">Card Name Size</label> <input type="number" name="nameSize" id="nameSize" value="120">
+        </div>
+        <div class="opt">
+          <label for="nameStroke">Card Name Stroke Width</label> <input type="number" name="nameStroke" id="nameStroke" value="20">
+        </div>
+      </div>
+      <hr>
+      <div class="viewOptions">
+        <div class="opt">
+          <label for="viewClass">View Class</label> <select name="viewClass" id="viewClass"></select>
+        </div>
+        <div class="opt">
+          <label for="viewAspect">View Aspect</label> <select name="viewAspect" id="viewAspect"></select>
+        </div>
+      </div>
+      <hr>
+      <div class="opt">. <button onclick="viewCard()">Update Viewable Card</button> </div>
+      <div class="opt">. <button onclick="downloadView()">Download Viewable Card</button> </div>
+      <div class="opt">(Will take a while to load) <button onclick="downloadSet()">Download Card set as ZIP</button> </div>
+      <hr>
+      <div class="credit">
+        Made by <a href="https://flaringk.github.io/">FlaringK</a>
+      </div>
+    </div>
+    
+    <canvas width="559" height="871" id="canvas"></canvas>
+  </div>
+
+  <div id="hidden" style="display: none;""></div>
+
+  <script src="./FileSaver.min.js"></script>
+  <script src="./jszip.min.js"></script>
+  <script src="./options.js"></script>
+  <script src="./draw.js"></script>
+
+</body>
+</html>
