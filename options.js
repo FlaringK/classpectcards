@@ -23,7 +23,7 @@ let viewClass = 0
 // ===
 
 // Classes
-const classes = ["heir", "witch", "seer", "mage", "knight", "page", "rogue", "thief", "maid", "bard", "sylph", "prince"]
+const classes = ["heir", "witch", "seer", "mage", "knight", "page", "rogue", "thief", "bard", "maid", "prince", "sylph", "aspect"]
 const classImgs = []
 
 // Aspects

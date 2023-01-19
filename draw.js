@@ -7,13 +7,13 @@ let getCardNumber = c => {
     case 0:
       return "A"
       break;
-    case 9:
+    case 10:
       return "J"
       break;
-    case 10:
+    case 11:
       return "Q"
       break;
-    case 11:
+    case 12:
       return "K"
       break;
   
@@ -50,14 +50,23 @@ let setCardSize = () => {
 // Actually draw card
 let drawCard = (c, a) => {
 
+  let newAspectSize = c == 12 ? aspectSize * 1.65 : aspectSize
+
   setCardSize()
 
   // Clear canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   // Draw Class
-  ctx.drawImage(classImgs[c], (canvas.width - classSize) / 2, (canvas.height - classSize) / 2, classSize, classSize)
-  
+  if (c == 12) {
+    const offset = 20
+    ctx.filter = 'blur(10px)'
+    ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2 + offset, (canvas.height - newAspectSize) / 2 + offset, newAspectSize, newAspectSize)
+    ctx.filter = 'blur(0px)'
+  } else {
+    ctx.drawImage(classImgs[c], (canvas.width - classSize) / 2, (canvas.height - classSize) / 2, classSize, classSize)
+  }
+
   // Fill Class with colour
   ctx.globalCompositeOperation = 'source-in'
   ctx.fillStyle = aspColors[a]
@@ -65,7 +74,7 @@ let drawCard = (c, a) => {
   ctx.globalCompositeOperation = 'source-over'
 
   // Draw Aspect 
-  ctx.drawImage(aspectImgs[a], (canvas.width - aspectSize) / 2, (canvas.height - aspectSize) / 2, aspectSize, aspectSize)
+  ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2, (canvas.height - newAspectSize) / 2, newAspectSize, newAspectSize)
 
   // DRAWING TEXT 
   ctx.textAlign = 'center';
@@ -77,7 +86,7 @@ let drawCard = (c, a) => {
     ctx.strokeStyle = 'white'
     ctx.lineWidth = nameStroke
     const cardName = doNameAspect ? classes[c] + " of " + aspects[a] : "the " + classes[c]
-    const ypos = c == 5 || c == 11 ? nameY * -1 : nameY
+    const ypos = c == 5 || c == 12 ? nameY * -1 : nameY
     ctx.strokeText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
     ctx.fillText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
   }
