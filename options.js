@@ -28,7 +28,7 @@ const classImgs = []
 
 // Aspects
 const aspects = ["breath", "blood", "time", "space", "light", "void", "mind", "heart", "life", "doom", "hope", "rage"]
-const aspColors = ["#4379e6", "#3e1601", "#b70d0e", "#000000", "#f0840c", "#033476", "#00923d", "#55142a", "#ccc3b4", "#173220", "#ffe094", "#520c61"]
+const aspColors = ["#4379e6", "#3e1601", "#b70d0e", "#000000", "#f0840c", "#104EA2", "#00923d", "#55142a", "#A49787", "#306800", "#FFDE55", "#520c61"]
 const aspectImgs = []
 
 // Classes
