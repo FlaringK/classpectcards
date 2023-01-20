@@ -47,34 +47,48 @@ let setCardSize = () => {
   setDPI(canvas, cardDPI)
 }
 
-// Actually draw card
-let drawCard = (c, a) => {
+let setAlphaOne = () => {
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i + 3]) data[i + 3] = 255
+  }
+  ctx.putImageData(imageData, 0, 0);
+}
 
-  let newAspectSize = c == 12 ? aspectSize * 1.65 : aspectSize
+// Actually draw card
+const drawCard = (c, a) => {
+
+  const newAspectSize = c == 12 ? aspectSize * 1.65 : aspectSize
 
   setCardSize()
 
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  // Draw Class
-  if (c == 12) {
-    const offset = 20
-    ctx.filter = 'blur(10px)'
-    ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2 + offset, (canvas.height - newAspectSize) / 2 + offset, newAspectSize, newAspectSize)
-    ctx.filter = 'blur(0px)'
-  } else {
-    ctx.drawImage(classImgs[c], (canvas.width - classSize) / 2, (canvas.height - classSize) / 2, classSize, classSize)
-  }
-
-  // Fill Class with colour
-  ctx.globalCompositeOperation = 'source-in'
   ctx.fillStyle = aspColors[a]
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  ctx.globalCompositeOperation = 'source-over'
+  if (c != 12) { // If notmal Card
+    // Draw Class
+    ctx.drawImage(classImgs[c], (canvas.width - classSize) / 2, (canvas.height - classSize) / 2, classSize, classSize)
 
-  // Draw Aspect 
-  ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2, (canvas.height - newAspectSize) / 2, newAspectSize, newAspectSize)
+    // Fill Class with colour
+    ctx.globalCompositeOperation = 'source-in'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.globalCompositeOperation = 'source-over'
+
+    // Draw Aspect 
+    ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2, (canvas.height - newAspectSize) / 2, newAspectSize, newAspectSize)
+  } else { // If King
+    // Draw Aspect 
+    ctx.drawImage(aspectImgs[a], (canvas.width - newAspectSize) / 2, (canvas.height - newAspectSize) / 2, newAspectSize, newAspectSize)
+
+    if (aspects[a] == "space" || aspects[a] == "hope") {
+      // Fill Aspect with colour
+      ctx.globalCompositeOperation = 'source-in'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.globalCompositeOperation = 'source-over'
+    }
+  }
 
   // DRAWING TEXT 
   ctx.textAlign = 'center';
@@ -86,7 +100,7 @@ let drawCard = (c, a) => {
     ctx.strokeStyle = 'white'
     ctx.lineWidth = nameStroke
     const cardName = doNameAspect ? classes[c] + " of " + aspects[a] : "the " + classes[c]
-    const ypos = c == 5 || c == 12 ? nameY * -1 : nameY
+    const ypos = lowNames.includes(classes[c]) ? nameY * -1 : nameY
     ctx.strokeText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
     ctx.fillText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
   }
