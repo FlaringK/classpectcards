@@ -1,24 +1,8 @@
 // ===
 
-let cardSizeX = 559
-let cardSizeY = 871
-let cardDPI = 300
+let params = {}
 
-let classSize = 1800
-let aspectSize = 600
-
-let numberScale = 3
-let numberX = 200
-let numberY = 200
-
-let doDrawName = true 
-let doNameAspect = true
-let nameY = 0
-let nameSize = 120
-let nameStroke = 20
-
-let viewAspect = 0
-let viewClass = 0
+// cardSizeX|cardSizeY|cardDPI|cardFont|classSize|aspectSize|numberScale|numberX|numberY|doDrawName|doNameAspect|nameY|nameSize|nameStroke|viewAspect|viewClass
 
 // ===
 
@@ -65,23 +49,20 @@ aspects.forEach((aspectName, i) => {
 // Get options
 
 let getOptions = () => {
-  cardSizeX = document.getElementById("cardSizeX").value
-  cardSizeY = document.getElementById("cardSizeY").value
-  cardDPI = document.getElementById("cardDPI").value
+  //Generate options object
+  document.querySelectorAll(".opt input, .opt select").forEach(input => {
+    switch (input.type) {
+      case "checkbox":
+        params[input.id] = input.checked
+        break;
+      case "number":
+        params[input.id] = parseFloat(input.value)
+        break;
+      default:
+        params[input.id] = input.value
+        break;
+    }
+  })
 
-  classSize = document.getElementById("classSize").value
-  aspectSize = document.getElementById("aspectSize").value
-
-  numberScale = parseFloat(document.getElementById("numberScale").value)
-  numberX = parseFloat(document.getElementById("numberX").value)
-  numberY = parseFloat(document.getElementById("numberY").value)
-
-  doDrawName = document.getElementById("doDrawName").checked
-  doNameAspect = document.getElementById("doNameAspect").checked
-  nameY = parseFloat(document.getElementById("nameY").value)
-  nameSize = parseFloat(document.getElementById("nameSize").value)
-  nameStroke = parseFloat(document.getElementById("nameStroke").value)
-
-  viewAspect = parseInt(document.getElementById("viewAspect").value)
-  viewClass = parseInt(document.getElementById("viewClass").value)
+  console.log(params)
 }

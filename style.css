@@ -3,8 +3,13 @@
   src: url('./assets/CARDC___.TTF');
 }
 
+@font-face {
+  font-family: 'ibmPS55';
+  src: url(./assets/Px437_IBM_PS-55_re.ttf);
+}
+
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'ibmPS55', 'Courier New', Courier, monospace;
 }
 
 h1, h2 {
@@ -29,7 +34,7 @@ h1, h2 {
 
 select, input, button {
   float: right;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'ibmPS55', 'Courier New', Courier, monospace;
 }
 
 select, option {

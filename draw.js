@@ -3,7 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 let getCardNumber = c => {
-  switch (c) {
+  switch (parseInt(c)) {
     case 0:
       return "A"
       break;
@@ -18,7 +18,7 @@ let getCardNumber = c => {
       break;
   
     default:
-      return c + 1
+      return parseInt(c) + 1
       break;
   }
 }
@@ -27,24 +27,24 @@ let drawNumber = (c, a) => {
   // Determine card number
   let cardNumber = getCardNumber(c)
   // Draw number
-  ctx.fillText(cardNumber, 42.5 * numberScale + numberX, 20 * numberScale + numberY)
+  ctx.fillText(cardNumber, 42.5 * params.numberScale + params.numberX, 20 * params.numberScale + params.numberY)
 
   // Draw symbol background
   ctx.beginPath();
-  ctx.arc(45 * numberScale + numberX, 125 * numberScale + numberY, 30 * numberScale, 0, 2 * Math.PI);
+  ctx.arc(45 * params.numberScale + params.numberX, 125 * params.numberScale + params.numberY, 30 * params.numberScale, 0, 2 * Math.PI);
   ctx.fill();
 
   // Draw symbol
   ctx.filter = 'blur(0.5px)';
-  ctx.drawImage(aspectImgs[a], 20 * numberScale + numberX, 100 * numberScale + numberY, 50 * numberScale, 50 * numberScale)
+  ctx.drawImage(aspectImgs[a], 20 * params.numberScale + params.numberX, 100 * params.numberScale + params.numberY, 50 * params.numberScale, 50 * params.numberScale)
   ctx.filter = 'blur(0)';
 }
 
 let setCardSize = () => {
   canvas.style = ""
-  canvas.width = cardSizeX
-  canvas.height = cardSizeY
-  setDPI(canvas, cardDPI)
+  canvas.width = params.cardSizeX
+  canvas.height = params.cardSizeY
+  setDPI(canvas, params.cardDPI)
 }
 
 let setAlphaOne = () => {
@@ -59,7 +59,7 @@ let setAlphaOne = () => {
 // Actually draw card
 const drawCard = (c, a) => {
 
-  const newAspectSize = c == 12 ? aspectSize * 1.65 : aspectSize
+  const newAspectSize = c == 12 ? params.aspectSize * 1.65 : params.aspectSize
 
   setCardSize()
 
@@ -69,7 +69,7 @@ const drawCard = (c, a) => {
   ctx.fillStyle = aspColors[a]
   if (c != 12) { // If notmal Card
     // Draw Class
-    ctx.drawImage(classImgs[c], (canvas.width - classSize) / 2, (canvas.height - classSize) / 2, classSize, classSize)
+    ctx.drawImage(classImgs[c], (canvas.width - params.classSize) / 2, (canvas.height - params.classSize) / 2, params.classSize, params.classSize)
 
     // Fill Class with colour
     ctx.globalCompositeOperation = 'source-in'
@@ -95,19 +95,19 @@ const drawCard = (c, a) => {
   ctx.textBaseline = 'middle';
 
   // Draw Card Name
-  if (doDrawName) {
-    ctx.font = `${nameSize}px cardc`
+  if (params.doDrawName) {
+    ctx.font = `${params.nameSize}px ${params.cardFont}`
     ctx.strokeStyle = 'white'
-    ctx.lineWidth = nameStroke
-    const cardName = doNameAspect ? classes[c] + " of " + aspects[a] : "the " + classes[c]
-    const ypos = lowNames.includes(classes[c]) ? nameY * -1 : nameY
-    ctx.strokeText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
-    ctx.fillText(cardName, canvas.width / 2, canvas.height / 2 + ypos)
+    ctx.lineWidth = params.nameStroke
+    const cardName = params.doNameAspect ? classes[c] + " of " + aspects[a] : "the " + classes[c]
+    const ypos = lowNames.includes(classes[c]) ? params.nameY * -1 : params.nameY
+    ctx.strokeText(cardName.toUpperCase(), canvas.width / 2, canvas.height / 2 + ypos)
+    ctx.fillText(cardName.toUpperCase(), canvas.width / 2, canvas.height / 2 + ypos)
   }
 
   // Draw Top Number
   ctx.textBaseline = 'top';
-  ctx.font = `${70 * numberScale}px cardc`
+  ctx.font = `${70 * params.numberScale}px ${params.cardFont}`
   drawNumber(c, a)
 
   // Draw Bottom Number
@@ -127,7 +127,7 @@ const drawCard = (c, a) => {
 // View card 
 let viewCard = () => {
   getOptions()
-  drawCard(viewClass, viewAspect)
+  drawCard(params.viewClass, params.viewAspect)
 }
 
 // Update card when settings change
@@ -188,7 +188,7 @@ function download(canvas, filename) {
 
 // Download Viewable Card
 let downloadView = () => {
-  download(canvas, aspects[viewAspect] + getCardNumber(viewClass) + ".png")
+  download(canvas, aspects[params.viewAspect] + getCardNumber(params.viewClass) + ".png")
 }
 
 let downloadSet = () => {
