@@ -9,7 +9,9 @@
 }
 
 body {
-  font-family: 'ibmPS55', 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0;
+  margin: 0;
 }
 
 h1, h2 {
@@ -17,15 +19,23 @@ h1, h2 {
   text-align: center;
 }
 
+#main {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
 #canvas {
   outline: solid black; 
   display: block; 
-  margin: auto;
+  margin: 1em auto;
+  background: white;
 }
 
-#main {
-  display: flex;
-  justify-content: space-between;
+#options {
+	background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(199,199,199,1) 100%);
+  padding: 1em;
+  border-right: solid black;
 }
 
 .opt {
@@ -34,7 +44,7 @@ h1, h2 {
 
 select, input, button {
   float: right;
-  font-family: 'ibmPS55', 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 select, option {
@@ -43,4 +53,51 @@ select, option {
 
 .credit {
   text-align: center;
+}
+
+/* DS background */
+
+:root {
+	--unit: 80px;
+	--gridColor: #ddd;
+	--scanColor: #eee;
+}
+
+body {
+	background-size: 
+		var(--unit) var(--unit),
+		var(--unit) var(--unit),
+		var(--unit) var(--unit),
+		var(--unit) calc(var(--unit) / 24);
+	background-image: 
+		linear-gradient(to right, var(--gridColor) calc(var(--unit)/48), transparent 1px), 
+		linear-gradient(to bottom, var(--gridColor) calc(var(--unit)/48), transparent 1px),
+		radial-gradient(var(--gridColor) calc(var(--unit)/24), transparent 0),
+		linear-gradient(to bottom, var(--scanColor) 50%, transparent 1px);
+	background-position:
+		calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2),
+		calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2),
+		calc(50% - var(--unit) * (1 - 1/48) - 1px) calc(var(--unit) * (1 + 1/48)),
+		calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2);
+  animation-name: scroll;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+}
+
+@keyframes scroll {
+  from {
+    background-position:
+      calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2),
+      calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2),
+      calc(50% - var(--unit) * (1 - 1/48) - 1px) calc(var(--unit) * (1 + 1/48)),
+      calc(50% - var(--unit)/2 - 1px) calc(var(--unit)/2);
+  }
+  to {
+    background-position:
+      calc(50% - var(--unit)/2 - 1px - var(--unit)) calc(var(--unit)/2 - var(--unit)),
+      calc(50% - var(--unit)/2 - 1px - var(--unit)) calc(var(--unit)/2 - var(--unit)),
+      calc(50% - var(--unit) * (1 - 1/48) - 1px - var(--unit)) calc(var(--unit) * (1 + 1/48) - var(--unit)),
+      calc(50% - var(--unit)/2 - 1px - var(--unit)) calc(var(--unit)/2 - var(--unit));
+  }
 }
