@@ -17,8 +17,11 @@
   <div id="main">
     <div id="options">
       <h1>Classpect Card generator</h1>
-      <h2>options</h2>
-      
+      <h2>Parameters</h2>
+      <div class="info">
+        Use <kbd>ctrl</kbd> + <kbd>F5</kbd> to reset the parameters
+      </div>
+      <hr>
       <div id=canvasOptions">
         <div class="opt">
           <label for="cardSizeX">Card Pixel Width</label> <input type="number" name="cardSizeX" id="cardSizeX" value="559">
@@ -53,6 +56,12 @@
         <div class="opt">
           <label for="numberY">Corner Number Y position</label> <input type="number" name="numberY" id="numberY" value="200">
         </div>
+        <div class="opt">
+          <label for="aspNumX">Corner Aspect X offset</label> <input type="number" name="aspNumX" id="aspNumX" value="0">
+        </div>
+        <div class="opt">
+          <label for="aspNumY">Corner Aspect Y offset</label> <input type="number" name="aspNumY" id="aspNumY" value="0">
+        </div>
       </div>
       <hr>
       <div class="viewOptions">
@@ -84,9 +93,9 @@
       <hr>
       <div class="opt">. <button onclick="viewCard()">Update Viewable Card</button> </div>
       <div class="opt">. <button onclick="downloadView()">Download Viewable Card</button> </div>
-      <div class="opt">(Will take a while to load) <button onclick="downloadSet()">Download Card set as ZIP</button> </div>
+      <div class="opt">(Will take a while to load) <button onclick="downloadSet()">Download Card Set as ZIP</button> </div>
       <hr>
-      <div class="credit">
+      <div class="info">
         Made by <a href="https://flaringk.github.io/">FlaringK</a>
       </div>
     </div>

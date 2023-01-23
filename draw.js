@@ -7,6 +7,9 @@ let getCardNumber = c => {
     case 0:
       return "A"
       break;
+    case 9:
+      return params.cardFont == "cardc" ? "=" : 10
+      break;
     case 10:
       return "J"
       break;
@@ -31,12 +34,12 @@ let drawNumber = (c, a) => {
 
   // Draw symbol background
   ctx.beginPath();
-  ctx.arc(45 * params.numberScale + params.numberX, 125 * params.numberScale + params.numberY, 30 * params.numberScale, 0, 2 * Math.PI);
+  ctx.arc(45 * params.numberScale + params.numberX + params.aspNumX, 125 * params.numberScale + params.numberY + params.aspNumY, 30 * params.numberScale, 0, 2 * Math.PI);
   ctx.fill();
 
   // Draw symbol
   ctx.filter = 'blur(0.5px)';
-  ctx.drawImage(aspectImgs[a], 20 * params.numberScale + params.numberX, 100 * params.numberScale + params.numberY, 50 * params.numberScale, 50 * params.numberScale)
+  ctx.drawImage(aspectImgs[a], 20 * params.numberScale + params.numberX + params.aspNumX, 100 * params.numberScale + params.numberY + params.aspNumY, 50 * params.numberScale, 50 * params.numberScale)
   ctx.filter = 'blur(0)';
 }
 

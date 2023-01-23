@@ -35,7 +35,8 @@ h1, h2 {
 #options {
 	background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(199,199,199,1) 100%);
   padding: 1em;
-  border-right: solid black;
+  outline: solid black;
+  border-right: solid white;
 }
 
 .opt {
@@ -51,7 +52,7 @@ select, option {
   text-transform: capitalize;
 }
 
-.credit {
+.info {
   text-align: center;
 }
 

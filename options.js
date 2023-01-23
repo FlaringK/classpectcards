@@ -2,8 +2,6 @@
 
 let params = {}
 
-// cardSizeX|cardSizeY|cardDPI|cardFont|classSize|aspectSize|numberScale|numberX|numberY|doDrawName|doNameAspect|nameY|nameSize|nameStroke|viewAspect|viewClass
-
 // ===
 
 // Classes
